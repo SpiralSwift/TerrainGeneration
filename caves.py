@@ -4,8 +4,10 @@ import matplotlib.pyplot as plt
 from matplotlib import animation
 
 
-# iterate over the grid and return an updated version
 def iterate(grid : np.ndarray, rules : np.ndarray, radius : int, defaultState : int = 1) -> np.ndarray:
+    """
+    iterate over the grid and return an updated version
+    """
     newGrid = np.zeros(grid.shape,dtype=int)
 
     dim = radius * 2 + 1 # cells along each axis to look at for each point
@@ -54,19 +56,20 @@ def plot_grid(plt,grid) -> None:
     plt.show()
 
 
-# setup
-dim = (200,200)
-nStates = 2
-grid = rn.randint(low=0,high=nStates,size=dim)
+if __name__ == "__main__":
+    # setup
+    dim = (200,200)
+    nStates = 2
+    grid = rn.randint(low=0,high=nStates,size=dim)
 
-fig, ax = plt.subplots()
+    fig, ax = plt.subplots()
 
-# rough tunnel pattern
-cts = [[7,9],[6,10]]
-grid[:,:] = run_automaton(grid,cts,2,3)
-#plot_grid(plt,grid)
+    # rough tunnel pattern
+    cts = [[7,9],[6,10]]
+    grid[:,:] = run_automaton(grid,cts,2,3)
+    #plot_grid(plt,grid)
 
-# clean
-cts = [[4,9],[3,9]]
-grid[:,:] = run_automaton(grid,cts,1,5)
-plot_grid(plt,grid)
+    # clean
+    cts = [[4,9],[3,9]]
+    grid[:,:] = run_automaton(grid,cts,1,5)
+    plot_grid(plt,grid)
